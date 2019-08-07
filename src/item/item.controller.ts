@@ -1,23 +1,14 @@
-import { Controller, Get, Post, Put, Delete } from '@nestjs/common'
+import { Controller, Get, Post, Put, Delete, Param } from '@nestjs/common'
+import { Crud } from '@nestjsx/crud'
 import { ItemService } from './item.service'
-
+import { ItemDTO } from './item.dto'
+import { ItemEntity } from './item.entity'
+@Crud({
+	model: {
+		type: ItemEntity
+	}
+})
 @Controller('item')
 export class ItemController {
-	constructor (private itemService: ItemService) {}
-	@Get()
-	showAllItem () {
-		return 'This route returns all the items'
-	}
-
-	@Post()
-	createItem () {}
-
-	@Get(':id')
-	findItem () {}
-
-	@Put()
-	updateItem () {}
-
-	@Delete()
-	deleteItem () {}
+	constructor (public service: ItemService) {}
 }
